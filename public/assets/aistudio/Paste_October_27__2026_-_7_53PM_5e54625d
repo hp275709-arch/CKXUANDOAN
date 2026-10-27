@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viglacera - Vật Liệu Xây Dựng & Giải Pháp Xanh Hàng Đầu Việt Nam</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#002548',
+                            900: '#001A33',
+                            PRIMARY: '#003366',
+                        },
+                        green: {
+                            ECO: '#00a859',
+                            DARK: '#008545',
+                        },
+                        stone: {
+                            BG: '#f8f9fa',
+                            CARD: '#ffffff',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .bg-pattern {
+            background-image: radial-gradient(#003366 0.5px, transparent 0.5px), radial-gradient(#003366 0.5px, #f8f9fa 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.05;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #003366;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #002548;
+        }
+    </style>
+</head>
+<body class="bg-stone-BG text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-navy-900 text-white text-xs py-2 px-4 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1"><i class="fas fa-phone-alt text-green-ECO"></i> Hotline: <strong class="text-white">1900 98 98 29</strong></span>
+                <span class="hidden md:inline-flex items-center gap-1"><i class="fas fa-envelope text-green-ECO"></i> info@viglacera.com.vn</span>
+                <span class="hidden lg:inline-flex items-center gap-1"><i class="fas fa-building text-green-ECO"></i> Tòa nhà Viglacera - Số 1 Đại lộ Thăng Long, Hà Nội</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <a href="#calculator" class="text-gray-300 hover:text-white transition"><i class="fas fa-calculator mr-1 text-green-ECO"></i> Tính vật liệu</a>
+                <span class="text-gray-600">|</span>
+                <!-- Language Selector -->
+                <button id="langToggle" class="flex items-center gap-1 hover:text-green-ECO transition">
+                    <span id="currentLang" class="font-bold">VI</span>
+                    <i class="fas fa-globe text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header / Navigation -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-md transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center group">
+                    <div class="flex items-center font-extrabold text-2xl tracking-tight text-navy-PRIMARY">
+                        <span class="text-3xl font-black tracking-wider text-navy-PRIMARY group-hover:text-green-ECO transition duration-300">VIGLACERA</span>
+                        <span class="ml-2 pl-2 border-l-2 border-green-ECO text-xs font-semibold text-gray-600 uppercase tracking-widest hidden sm:block">Vật Liệu Xây Dựng</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Items -->
+                <nav class="hidden lg:flex space-x-6 xl:space-x-8 font-heading text-sm font-semibold uppercase text-navy-PRIMARY">
+                    <a href="#" class="hover:text-green-ECO text-green-ECO transition duration-200">Trang chủ</a>
+                    <a href="#about" class="hover:text-green-ECO transition duration-200">Giới thiệu</a>
+                    <a href="#products" class="hover:text-green-ECO transition duration-200">Vật liệu xây dựng</a>
+                    <a href="#solutions" class="hover:text-green-ECO transition duration-200">Giải pháp xanh</a>
+                    <a href="#showrooms" class="hover:text-green-ECO transition duration-200">Showroom</a>
+                    <a href="#contact" class="hover:text-green-ECO transition duration-200">Liên hệ</a>
+                </nav>
+
+                <!-- Search & Actions -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Tìm gạch, đá, kính, sứ..." class="w-48 xl:w-60 pl-9 pr-4 py-2 text-sm bg-gray-100 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-navy-PRIMARY focus:bg-white transition duration-200">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400 text-xs"></i>
+                    </div>
+                    <a href="#contact" class="bg-green-ECO hover:bg-green-DARK text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-full shadow-md hover:shadow-lg transition duration-200 flex items-center gap-2">
+                        <i class="fas fa-headset"></i> Tư vấn
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-navy-PRIMARY hover:text-green-ECO focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Navigation -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3">
+            <div class="relative my-3">
+                <input type="text" placeholder="Tìm kiếm sản phẩm..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 border border-gray-200 rounded-full">
+                <i class="fas fa-search absolute left-3 top-3 text-gray-400 text-xs"></i>
+            </div>
+            <a href="#" class="block px-3 py-2 rounded-md font-bold text-green-ECO">Trang chủ</a>
+            <a href="#about" class="block px-3 py-2 rounded-md text-navy-PRIMARY hover:bg-gray-100 font-semibold">Giới thiệu</a>
+            <a href="#products" class="block px-3 py-2 rounded-md text-navy-PRIMARY hover:bg-gray-100 font-semibold">Vật liệu xây dựng</a>
+            <a href="#solutions" class="block px-3 py-2 rounded-md text-navy-PRIMARY hover:bg-gray-100 font-semibold">Giải pháp xanh</a>
+            <a href="#showrooms" class="block px-3 py-2 rounded-md text-navy-PRIMARY hover:bg-gray-100 font-semibold">Hệ thống Showroom</a>
+            <a href="#contact" class="block px-3 py-2 rounded-md text-navy-PRIMARY hover:bg-gray-100 font-semibold">Liên hệ tư vấn</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Showcase Banner -->
+        <section class="relative bg-navy-900 text-white min-h-[580px] flex items-center overflow-hidden">
+            <!-- Background Image Overlay with Gradient -->
+            <div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-overlay" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-PRIMARY/90 to-transparent"></div>
+            
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+                <div class="max-w-2xl">
+                    <span class="inline-block bg-green-ECO/20 text-green-ECO border border-green-ECO/40 font-semibold text-xs tracking-widest uppercase px-3.5 py-1.5 rounded-full mb-4">
+                        <i class="fas fa-leaf mr-1"></i> Tương lai cho công trình công nghệ xanh
+                    </span>
+                    <h1 class="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-tight mb-6">
+                        Nâng Tầm Giá Trị Sống <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-ECO to-teal-300">Kiến Tạo Hệ Giải Pháp Xanh</span>
+                    </h1>
+                    <p class="text-gray-300 text-base sm:text-lg mb-8 leading-relaxed">
+                        Tiên phong cung cấp giải pháp đồng bộ vật liệu xây dựng cao cấp: Đá nung kết khổ lớn, Kính tiết kiệm năng lượng Low-E, Sứ vệ sinh thông minh & Bê tông khí chưng áp ALC.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#products" class="bg-green-ECO hover:bg-green-DARK text-white font-heading font-bold text-sm px-8 py-3.5 rounded-lg shadow-lg hover:shadow-green-ECO/30 transition duration-300 flex items-center gap-2">
+                            <span>Khám phá danh mục</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <button onclick="downloadCatalogue()" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md font-heading font-bold text-sm px-8 py-3.5 rounded-lg transition duration-300 flex items-center gap-2">
+                            <i class="fas fa-file-pdf text-red-400"></i>
+                            <span>Tải E-Catalogues 2026</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metric Highlights Banner at Bottom of Hero -->
+            <div class="absolute bottom-0 inset-x-0 bg-navy-PRIMARY/80 backdrop-blur-md border-t border-white/10 hidden md:block">
+                <div class="max-w-7xl mx-auto px-4 py-4 grid grid-cols-4 gap-4 text-center">
+                    <div class="border-r border-white/10">
+                        <p class="font-heading font-bold text-2xl text-green-ECO">50+</p>
+                        <p class="text-xs text-gray-300 uppercase">Năm Uy Tín Hàng Đầu</p>
+                    </div>
+                    <div class="border-r border-white/10">
+                        <p class="font-heading font-bold text-2xl text-green-ECO">40+</p>
+                        <p class="text-xs text-gray-300 uppercase">Quốc Gia Xuất Khẩu</p>
+                    </div>
+                    <div class="border-r border-white/10">
+                        <p class="font-heading font-bold text-2xl text-green-ECO">100%</p>
+                        <p class="text-xs text-gray-300 uppercase">Đạt Chuẩn Xanh Quốc Tế</p>
+                    </div>
+                    <div>
+                        <p class="font-heading font-bold text-2xl text-green-ECO">TOP 1</p>
+                        <p class="text-xs text-gray-300 uppercase">Sản Xuất VLXD Tại Việt Nam</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Categories Filter & Grid Section -->
+        <section id="products" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-green-ECO mb-2">Danh mục sản phẩm</h2>
+                <p class="font-heading text-2xl sm:text-4xl font-extrabold text-navy-PRIMARY">Vật Liệu Xây Dựng Đột Phá & Đồng Bộ</p>
+                <div class="w-16 h-1 bg-green-ECO mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10" id="filterBtnGroup">
+                <button onclick="filterProducts('all')" class="filter-btn active-filter bg-navy-PRIMARY text-white px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition shadow-sm">Tất cả sản phẩm</button>
+                <button onclick="filterProducts('tile')" class="filter-btn bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition">Đá Nung Kết & Gạch</button>
+                <button onclick="filterProducts('sanitary')" class="filter-btn bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition">Sứ Vệ Sinh & Sen Vòi</button>
+                <button onclick="filterProducts('glass')" class="filter-btn bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition">Kính Tiết Kiệm Năng Lượng</button>
+                <button onclick="filterProducts('concrete')" class="filter-btn bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition">Bê Tông Khí ALC & Ngói</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="productGrid">
+                <!-- Product items rendered dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- Green Solutions & Eco Technology -->
+        <section id="solutions" class="bg-navy-900 text-white py-16 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-green-ECO font-bold text-xs uppercase tracking-widest block mb-2"><i class="fas fa-leaf mr-1"></i> Xu Hướng Xanh 2026</span>
+                        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold mb-6 leading-tight">Giải Pháp Công Trình Xanh & Bảo Vệ Môi Trường</h2>
+                        <p class="text-gray-300 mb-8 leading-relaxed">
+                            Viglacera là doanh nghiệp tiên phong cam kết phát triển bền vững, ứng dụng công nghệ Châu Âu để giảm thiểu phát thải Carbon, tiết kiệm năng lượng vận hành cho các công trình hiện đại.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-green-ECO/20 border border-green-ECO/30 flex items-center justify-center text-green-ECO text-xl flex-shrink-0">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-heading font-bold text-lg text-white">Kính Tiết Kiệm Năng Lượng Low-E / Solar Control</h3>
+                                    <p class="text-sm text-gray-400">Cản đến 79% bức xạ nhiệt mặt trời, giảm tải 50% chi phí điện điều hòa cho tòa nhà cao tầng.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-green-ECO/20 border border-green-ECO/30 flex items-center justify-center text-green-ECO text-xl flex-shrink-0">
+                                    <i class="fas fa-cubes"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-heading font-bold text-lg text-white">Bê Tông Khí Chưng Áp ALC siêu nhẹ</h3>
+                                    <p class="text-sm text-gray-400">Thi công nhanh gấp 3 lần, cách âm, cách nhiệt tiêu chuẩn Châu Âu và tái chế 100% tài nguyên.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-green-ECO/20 border border-green-ECO/30 flex items-center justify-center text-green-ECO text-xl flex-shrink-0">
+                                    <i class="fas fa-shower"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-heading font-bold text-lg text-white">Sứ Vệ Sinh Men Nano Anti-bacterial</h3>
+                                    <p class="text-sm text-gray-400">Kháng khuẩn đến 89%, xả xoáy siêu tiết kiệm nước chỉ với 3.5L/lần xả.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop" alt="Green Architecture Solutions" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 bg-green-ECO text-white p-6 rounded-2xl shadow-xl hidden sm:block max-w-xs">
+                            <p class="font-heading font-extrabold text-3xl">40%</p>
+                            <p class="text-xs uppercase font-medium mt-1">Tiết kiệm năng lượng cho các công trình đạt chứng chỉ LEED & Lotus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Material Estimator Tool Section -->
+        <section id="calculator" class="py-16 bg-gray-50 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                <div class="bg-navy-PRIMARY p-6 text-white text-center">
+                    <h2 class="font-heading text-2xl font-bold">Công Cụ Tính Nhu Cầu Vật Liệu Dự Án</h2>
+                    <p class="text-xs text-gray-300 mt-1">Dễ dàng ước tính số lượng gạch, đá ốp lát cần dùng cho không gian của bạn</p>
+                </div>
+                
+                <div class="p-6 sm:p-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Chiều dài diện tích (m)</label>
+                            <input type="number" id="calcLength" value="5" min="0.5" step="0.5" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-PRIMARY focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Chiều rộng diện tích (m)</label>
+                            <input type="number" id="calcWidth" value="4" min="0.5" step="0.5" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-PRIMARY focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Kích thước gạch/đá mong muốn</label>
+                            <select id="calcTileSize" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-PRIMARY focus:outline-none">
+                                <option value="0.36">60x60 cm (Định dạng tiêu chuẩn)</option>
+                                <option value="0.64">80x80 cm (Định dạng vừa)</option>
+                                <option value="1.44">120x120 cm (Khổ lớn Granit)</option>
+                                <option value="3.84" selected>160x240 cm (Đá Nung Kết Khổ Tấm)</option>
+                            </select>
+                        </div>
+                        <button onclick="calculateMaterial()" class="w-full bg-navy-PRIMARY hover:bg-navy-800 text-white font-bold py-3.5 rounded-lg transition shadow-md">
+                            <i class="fas fa-calculator mr-2"></i>Tính Toán Ngay
+                        </button>
+                    </div>
+
+                    <div class="bg-stone-BG p-6 rounded-xl border border-gray-200 text-center flex flex-col justify-center h-full">
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Kết quả dự toán</span>
+                        <div class="mt-4">
+                            <span class="text-4xl font-extrabold text-green-ECO" id="calcArea">20</span>
+                            <span class="text-gray-600 font-semibold">m²</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Tổng diện tích bề mặt</p>
+
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <p class="text-xs text-gray-500 uppercase font-semibold">Số lượng tấm/viên ước tính (+5% hao hụt):</p>
+                            <p class="text-3xl font-bold text-navy-PRIMARY mt-2" id="calcTilesCount">6 tấm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Showrooms & Dealer Network Locator -->
+        <section id="showrooms" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-green-ECO mb-2">Trải nghiệm thực tế</h2>
+                <p class="font-heading text-2xl sm:text-4xl font-extrabold text-navy-PRIMARY">Hệ Thống Showroom & Đại Lý</p>
+                <div class="w-16 h-1 bg-green-ECO mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden grid grid-cols-1 lg:grid-cols-3">
+                <!-- Location List -->
+                <div class="p-6 border-b lg:border-b-0 lg:border-r border-gray-200">
+                    <label class="block text-xs font-bold uppercase text-gray-600 mb-2">Chọn Khu Vực / Tỉnh Thành</label>
+                    <select id="citySelect" onchange="filterShowrooms()" class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:ring-2 focus:ring-navy-PRIMARY font-semibold text-sm">
+                        <option value="all">Tất cả khu vực</option>
+                        <option value="hanoi">Hà Nội</option>
+                        <option value="hcm">TP. Hồ Chí Minh</option>
+                        <option value="danang">Đà Nẵng</option>
+                    </select>
+
+                    <div class="space-y-3 max-h-[380px] overflow-y-auto pr-2" id="showroomList">
+                        <!-- Showrooms populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Interactive Map / Location Preview Placeholder -->
+                <div class="lg:col-span-2 bg-gray-100 min-h-[350px] relative flex items-center justify-center p-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.6293370966954!2d105.78310867603358!3d21.00748928851086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aca61c572a91%3A0x6a1fbe7b1e847752!2zVMOyYSBuaMOgIFZpZ2xhY2VyYQ!5e0!3m2!1svi!2svn!4v1710000000000!5m2!1svi!2svn" class="w-full h-full border-0 absolute inset-0 rounded-r-2xl" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Consultation Form -->
+        <section id="contact" class="bg-stone-100 py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 sm:p-12 border border-gray-200">
+                <div class="text-center mb-8">
+                    <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-navy-PRIMARY">Đăng Ký Nhận Tư Vấn Dự Án & Báo Giá</h2>
+                    <p class="text-gray-600 text-sm mt-2">Đội ngũ chuyên viên tư vấn kỹ thuật Viglacera sẵn sàng phản hồi trong 24 giờ</p>
+                </div>
+
+                <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Họ và tên *</label>
+                            <input type="text" required placeholder="Nguyễn Văn A" class="w-full p-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-navy-PRIMARY focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Số điện thoại *</label>
+                            <input type="tel" required placeholder="0901 234 567" class="w-full p-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-navy-PRIMARY focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Email liên hệ</label>
+                            <input type="email" placeholder="example@domain.com" class="w-full p-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-navy-PRIMARY focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Nhóm sản phẩm quan tâm</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-navy-PRIMARY focus:outline-none">
+                                <option>Đá Nung Kết & Gạch Ốp Lát</option>
+                                <option>Sứ Vệ Sinh & Thiết Bị Sen Vòi</option>
+                                <option>Kính Tiết Kiệm Năng Lượng</option>
+                                <option>Bê Tông Khí Chưng Áp ALC</option>
+                                <option>Trọn Gói Giải Pháp Dự Án</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Nội dung nhu cầu / Chi tiết dự án</label>
+                        <textarea rows="4" placeholder="Nhập thông tin yêu cầu tư vấn hoặc thông số dự án..." class="w-full p-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-navy-PRIMARY focus:outline-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-green-ECO hover:bg-green-DARK text-white font-heading font-bold py-4 rounded-lg shadow-lg hover:shadow-green-ECO/30 transition duration-300 text-sm uppercase tracking-wider">
+                        Gửi Yêu Cầu Tư Vấn Ngay
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Quick View Product Details -->
+    <div id="productModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl relative animate-fade-in max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-700 w-9 h-9 rounded-full flex items-center justify-center z-10">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modalContent" class="p-6 sm:p-8">
+                <!-- Content injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast Message -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-navy-900 text-white px-6 py-3.5 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 border border-green-ECO">
+        <i class="fas fa-check-circle text-green-ECO text-lg"></i>
+        <span id="toastMsg" class="text-sm font-medium"></span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-white border-t border-navy-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Company Info -->
+                <div class="space-y-4">
+                    <h3 class="font-heading font-extrabold text-2xl text-white tracking-wider">VIGLACERA</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Tổng Công Ty Viglacera - CTCP là doanh nghiệp hàng đầu trong lĩnh vực sản xuất Vật Liệu Xây Dựng và Đầu Tư Bất Động Sản tại Việt Nam.
+                    </p>
+                    <div class="flex space-x-3 pt-2">
+                        <a href="#" class="w-9 h-9 rounded-full bg-navy-800 hover:bg-green-ECO flex items-center justify-center text-gray-300 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-navy-800 hover:bg-green-ECO flex items-center justify-center text-gray-300 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-navy-800 hover:bg-green-ECO flex items-center justify-center text-gray-300 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Products Link -->
+                <div>
+                    <h4 class="font-heading font-bold text-sm uppercase text-white mb-4 border-l-2 border-green-ECO pl-2">Sản Phẩm Chính</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="#products" class="hover:text-green-ECO transition">Đá Nung Kết Vasta Stone</a></li>
+                        <li><a href="#products" class="hover:text-green-ECO transition">Kính Tiết Kiệm Năng Lượng Low-E</a></li>
+                        <li><a href="#products" class="hover:text-green-ECO transition">Sứ Vệ Sinh Thông Minh Viglacera</a></li>
+                        <li><a href="#products" class="hover:text-green-ECO transition">Bê Tông Khí Chưng Áp ALC</a></li>
+                        <li><a href="#products" class="hover:text-green-ECO transition">Gạch Granite & Ceramic</a></li>
+                    </ul>
+                </div>
+
+                <!-- Solutions Link -->
+                <div>
+                    <h4 class="font-heading font-bold text-sm uppercase text-white mb-4 border-l-2 border-green-ECO pl-2">Giải Pháp & Dự Án</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="#solutions" class="hover:text-green-ECO transition">Giải Pháp Công Trình Xanh</a></li>
+                        <li><a href="#calculator" class="hover:text-green-ECO transition">Công Cụ Dự Toán Vật Liệu</a></li>
+                        <li><a href="#showrooms" class="hover:text-green-ECO transition">Tìm Kiếm Showroom Gần Bạn</a></li>
+                        <li><a href="#contact" class="hover:text-green-ECO transition">Tư Vấn Kiến Trúc & Thiết Kế</a></li>
+                        <li><a href="#" class="hover:text-green-ECO transition">Hệ Thống Phân Phối Toàn Cầu</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Details -->
+                <div>
+                    <h4 class="font-heading font-bold text-sm uppercase text-white mb-4 border-l-2 border-green-ECO pl-2">Trụ Sở Chính</h4>
+                    <ul class="space-y-3 text-xs text-gray-300">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-map-marker-alt text-green-ECO mt-0.5"></i>
+                            <span>Tòa nhà Viglacera, Số 1 Đại lộ Thăng Long, Mễ Trì, Nam Từ Liêm, Hà Nội</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-phone-alt text-green-ECO"></i>
+                            <span>Hotline: 1900 98 98 29</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-envelope text-green-ECO"></i>
+                            <span>Email: info@viglacera.com.vn</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-navy-800 text-center text-xs text-gray-500">
+                <p>&copy; 2026 Tổng Công Ty Viglacera - CTCP. Bản quyền đã được bảo hộ.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data & Logic -->
+    <script>
+        // Sample Products Data
+        const products = [
+            {
+                id: 1,
+                name: "Đá Nung Kết Vasta Stone Khổ Lớn",
+                category: "tile",
+                code: "VST-162801",
+                size: "1600 x 3200 x 12 mm",
+                img: "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=800&auto=format&fit=crop",
+                desc: "Sản xuất trên dây chuyền Sacmi Continua+ hàng đầu Ý. Kháng nhiệt, chống trầy xước, ứng dụng cho mặt bếp, đảo bếp và mặt dựng tòa nhà cao cấp.",
+                badge: "Khổ Lớn Hàng Đầu"
+            },
+            {
+                id: 2,
+                name: "Kính Tiết Kiệm Năng Lượng Low-E",
+                category: "glass",
+                code: "GLS-LOWE-02",
+                size: "Tùy chỉnh theo công trình",
+                img: "https://images.unsplash.com/photo-1508873696983-2df515122519?q=80&w=800&auto=format&fit=crop",
+                desc: "Phủ hợp chất Bạc (Ag) siêu mỏng giúp cản tia UV đến 99%, giảm truyền nhiệt bức xạ, tối ưu ánh sáng tự nhiên cho văn phòng và căn hộ sang trọng.",
+                badge: "Tiết Kiệm Năng Lượng"
+            },
+            {
+                id: 3,
+                name: "Bàn Cầu Thông Minh V-Smart V93",
+                category: "sanitary",
+                code: "V93-SMART",
+                size: "720 x 410 x 520 mm",
+                img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+                desc: "Tự động đóng mở, sưởi ấm bệ ngồi, đóng xoáy rửa massage đa chức năng và khử trùng tia UV đạt chuẩn y tế Châu Âu.",
+                badge: "Công Nghệ Thông Minh"
+            },
+            {
+                id: 4,
+                name: "Tấm Panel Bê Tông Khí Chưng Áp ALC",
+                category: "concrete",
+                code: "ALC-PNL-10",
+                size: "1200 x 600 x 100 mm",
+                img: "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?q=80&w=800&auto=format&fit=crop",
+                desc: "Khả năng chống cháy lên tới 4 giờ, gia cường lưới thép chống nứt, trọng lượng chỉ bằng 1/3 gạch đỏ truyền thống.",
+                badge: "Vật Liệu Xanh"
+            },
+            {
+                id: 5,
+                name: "Gạch Granite Đồng Chất Eurotile",
+                category: "tile",
+                code: "EUR-GRN-88",
+                size: "800 x 800 mm",
+                img: "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?q=80&w=800&auto=format&fit=crop",
+                desc: "Họa tiết vân đá tự nhiên tinh xảo, độ hút nước dưới 0.1%, chuyên dụng cho sảnh khách sạn và biệt thự thương gia.",
+                badge: "Mới 2026"
+            },
+            {
+                id: 6,
+                name: "Bộ Sen Cây Nhiệt Độ Cao Cấp Vg598",
+                category: "sanitary",
+                code: "VG598-THERMO",
+                size: "Chiều cao 1200 mm",
+                img: "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=800&auto=format&fit=crop",
+                desc: "Lõi chia nước mạ Niken-Crom 5 lớp, khóa nhiệt độ an toàn 38°C bảo vệ người già và trẻ nhỏ.",
+                badge: "An Toàn Mới"
+            }
+        ];
+
+        // Sample Showrooms Data
+        const showrooms = [
+            {
+                city: "hanoi",
+                name: "Showroom HQ Viglacera Hà Nội",
+                address: "Tầng 1 Tòa nhà Viglacera, Số 1 Đại lộ Thăng Long, Hà Nội",
+                phone: "024 3553 6688"
+            },
+            {
+                city: "hcm",
+                name: "Center Showroom TP. Hồ Chí Minh",
+                address: "Số 218 Tô Hiến Thành, Phường 15, Quận 10, TP. HCM",
+                phone: "028 3863 3428"
+            },
+            {
+                city: "danang",
+                name: "Showroom Viglacera Đà Nẵng",
+                address: "Số 452 Nguyễn Hữu Thọ, Q. Cẩm Lệ, TP. Đà Nẵng",
+                phone: "0236 3688 989"
+            }
+        ];
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Language Switcher Toggle Simple Demo
+        const langToggle = document.getElementById('langToggle');
+        const currentLang = document.getElementById('currentLang');
+        langToggle.addEventListener('click', () => {
+            if (currentLang.innerText === 'VI') {
+                currentLang.innerText = 'EN';
+                showToast('Switched to English interface');
+            } else {
+                currentLang.innerText = 'VI';
+                showToast('Đã chuyển sang giao diện Tiếng Việt');
+            }
+        });
+
+        // Render Product Cards
+        function renderProducts(items) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = items.map(p => `
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-navy-PRIMARY/90 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            ${p.badge}
+                        </span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs text-green-ECO font-bold uppercase tracking-wider">${p.code}</span>
+                            <h3 class="font-heading font-bold text-lg text-navy-PRIMARY mt-1 mb-2 group-hover:text-green-ECO transition">${p.name}</h3>
+                            <p class="text-xs text-gray-500 mb-4 flex items-center gap-1">
+                                <i class="fas fa-ruler-combined text-gray-400"></i> Kích thước: ${p.size}
+                            </p>
+                            <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed mb-4">${p.desc}</p>
+                        </div>
+                        <button onclick="openModal(${p.id})" class="w-full bg-gray-100 hover:bg-navy-PRIMARY hover:text-white text-navy-PRIMARY font-bold text-xs py-2.5 rounded-lg transition duration-200 flex items-center justify-center gap-2">
+                            <i class="fas fa-eye"></i> Xem Chi Tiết
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Products Filter Logic
+        function filterProducts(cat) {
+            // Update Active Class
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-navy-PRIMARY', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-700');
+            });
+            event.target.classList.remove('bg-white', 'text-gray-700');
+            event.target.classList.add('bg-navy-PRIMARY', 'text-white');
+
+            if (cat === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === cat);
+                renderProducts(filtered);
+            }
+        }
+
+        // Live Search Input Filter
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(val) || p.code.toLowerCase().includes(val) || p.desc.toLowerCase().includes(val));
+            renderProducts(filtered);
+        });
+
+        // Open Modal Quick View
+        function openModal(id) {
+            const item = products.find(p => p.id === id);
+            if (!item) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="rounded-xl overflow-hidden aspect-square border border-gray-200">
+                        <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="inline-block bg-green-ECO/10 text-green-ECO border border-green-ECO/30 text-xs font-bold px-2.5 py-1 rounded-full mb-2">
+                            Mã SP: ${item.code}
+                        </span>
+                        <h2 class="font-heading font-extrabold text-2xl text-navy-PRIMARY mb-3">${item.name}</h2>
+                        <p class="text-xs text-gray-500 font-semibold mb-4">Kích thước chuẩn: ${item.size}</p>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-6">${item.desc}</p>
+                        
+                        <div class="space-y-3 pt-4 border-t border-gray-100">
+                            <div class="flex items-center gap-2 text-xs text-gray-700 font-medium">
+                                <i class="fas fa-check text-green-ECO"></i> Đạt chứng chỉ Xanh Quốc Tế LEED / Lotus
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-gray-700 font-medium">
+                                <i class="fas fa-check text-green-ECO"></i> Bảo hành chính hãng từ Tổng Công Ty Viglacera
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex gap-3">
+                            <a href="#contact" onclick="closeModal()" class="flex-1 bg-green-ECO hover:bg-green-DARK text-white text-center font-bold text-xs py-3 rounded-lg transition">
+                                Nhận Báo Giá Dự Án
+                            </a>
+                            <button onclick="downloadCatalogue()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs px-4 py-3 rounded-lg transition">
+                                <i class="fas fa-download"></i> Spec Sheet
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('productModal').classList.remove('hidden');
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('productModal').classList.add('hidden');
+        }
+
+        // Material Calculator Functionality
+        function calculateMaterial() {
+            const length = parseFloat(document.getElementById('calcLength').value) || 0;
+            const width = parseFloat(document.getElementById('calcWidth').value) || 0;
+            const tileSize = parseFloat(document.getElementById('calcTileSize').value) || 1;
+
+            const area = length * width;
+            // +5% loss factor
+            const requiredTiles = Math.ceil((area / tileSize) * 1.05);
+
+            document.getElementById('calcArea').innerText = area.toFixed(1);
+            document.getElementById('calcTilesCount').innerText = `${requiredTiles} tấm/viên`;
+            showToast('Đã tính toán số lượng vật liệu ước tính thành công!');
+        }
+
+        // Showroom Selector Logic
+        function renderShowrooms(items) {
+            const list = document.getElementById('showroomList');
+            list.innerHTML = items.map(s => `
+                <div class="p-4 rounded-xl border border-gray-200 hover:border-green-ECO bg-stone-BG transition cursor-pointer">
+                    <h4 class="font-heading font-bold text-sm text-navy-PRIMARY">${s.name}</h4>
+                    <p class="text-xs text-gray-600 mt-1"><i class="fas fa-map-marker-alt text-green-ECO mr-1"></i>${s.address}</p>
+                    <p class="text-xs text-navy-PRIMARY font-bold mt-2"><i class="fas fa-phone-alt text-green-ECO mr-1"></i>${s.phone}</p>
+                </div>
+            `).join('');
+        }
+
+        function filterShowrooms() {
+            const city = document.getElementById('citySelect').value;
+            if (city === 'all') {
+                renderShowrooms(showrooms);
+            } else {
+                const filtered = showrooms.filter(s => s.city === city);
+                renderShowrooms(filtered);
+            }
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast('Cảm ơn bạn! Yêu cầu tư vấn đã được gửi tới Viglacera.');
+            e.target.reset();
+        }
+
+        // Toast Message Notification
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        // Download E-Catalogue Mock Action
+        function downloadCatalogue() {
+            showToast('Đang tải file Viglacera_E-Catalogue_2026.pdf...');
+        }
+
+        // Initialize Default State
+        window.onload = function() {
+            renderProducts(products);
+            renderShowrooms(showrooms);
+        };
+    </script>
+</body>
+</html>

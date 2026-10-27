@@ -1,0 +1,6 @@
+{
+  "name": "Viglacera - Vật Liệu Xây Dựng & Giải Pháp Xanh",
+  "description": "Website chính thức giới thiệu hệ giải pháp vật liệu xây dựng xanh Viglacera: Đá nung kết, kính tiết kiệm năng lượng Low-E, sứ vệ sinh thông minh và bê tông khí chưng áp ALC.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
